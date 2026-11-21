@@ -24,5 +24,8 @@
     "investment-safety"
   ],
   "author": "Abhiman (Project Lead) & Team",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^10.0.7"
+  }
 }

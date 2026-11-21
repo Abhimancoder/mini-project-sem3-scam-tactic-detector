@@ -38,15 +38,18 @@ function analyzeConversation(conversationText) {
   const detectedTactics = tactics.filter(t => t.detected);
 
   // Compute text highlights with offsets for the UI
-  const highlights = [];
+  const rawHighlights = [];
   for (const tactic of detectedTactics) {
     for (const phrase of tactic.evidencePhrases) {
+      if (!phrase || typeof phrase !== 'string' || phrase.trim().length === 0) {
+        continue;
+      }
       let startIndex = 0;
       const lowerRaw = rawText.toLowerCase();
       const lowerPhrase = phrase.toLowerCase();
 
       while ((startIndex = lowerRaw.indexOf(lowerPhrase, startIndex)) !== -1) {
-        highlights.push({
+        rawHighlights.push({
           tacticId: tactic.id,
           tacticName: tactic.name,
           category: tactic.category,
@@ -54,13 +57,29 @@ function analyzeConversation(conversationText) {
           start: startIndex,
           end: startIndex + phrase.length
         });
-        startIndex += phrase.length;
+        startIndex += Math.max(1, phrase.length);
       }
     }
   }
 
-  // Deduplicate and sort highlights by character offset
-  highlights.sort((a, b) => a.start - b.start);
+  // Sort highlights by character offset start, then by longest phrase descending
+  rawHighlights.sort((a, b) => a.start - b.start || (b.end - b.start) - (a.end - a.start));
+
+  // Merge overlapping intervals cleanly to guarantee non-overlapping tokens for the UI
+  const highlights = [];
+  let lastEnd = -1;
+  for (const hl of rawHighlights) {
+    if (hl.start >= lastEnd) {
+      highlights.push(hl);
+      lastEnd = hl.end;
+    } else if (hl.end > lastEnd) {
+      highlights.push({
+        ...hl,
+        start: lastEnd
+      });
+      lastEnd = hl.end;
+    }
+  }
 
   // Generate risk assessment
   const riskAssessment = assessRisk(tactics, sentences.length);

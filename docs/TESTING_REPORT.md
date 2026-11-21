@@ -20,9 +20,9 @@ The Scam Tactic Detector test suite ensures deterministic reliability across fou
 
 ```
 Test Suites: 9 passed, 9 total
-Tests:       41 passed, 41 total
+Tests:       42 passed, 42 total
 Snapshots:   0 total
-Time:        3.506 s
+Time:        3.407 s
 Ran all test suites.
 ```
 
@@ -38,7 +38,7 @@ Ran all test suites.
 | `tests/unit/negationAndContext.test.js` | NLP & Negation | 6 | PASS |
 | `tests/unit/riskAssessmentService.test.js` | Scoring Logic | 2 | PASS |
 | `tests/integration/apiEndpoints.test.js` | REST Endpoints | 7 | PASS |
-| `tests/security/securityAndValidation.test.js` | Security & Ingestion | 8 | PASS |
+| `tests/security/securityAndValidation.test.js` | Security & Ingestion | 9 | PASS |
 
 ---
 

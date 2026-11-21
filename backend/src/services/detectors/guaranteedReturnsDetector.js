@@ -33,7 +33,7 @@ const GUARANTEED_PATTERNS = [
     cue: 'Fixed profit assurance'
   },
   {
-    regex: /\b(?:turn\s+[$₹€£]?\d+\s+into\s+[$₹€£]?\d+\s+(?:in\s+\d+|overnight|today|instantly|in\s+24\s*hours))\b/i,
+    regex: /\b(?:turn\s+[$₹€£]?\d+\s+into\s+[$₹€£]?\d+\s+(?:(?:in|within)\s+\d+\s*(?:hours?|days?|weeks?|months?)?|overnight|today|instantly|in\s+24\s*hours))\b/i,
     weight: 0.90,
     cue: 'Instant wealth multiplication scheme'
   },

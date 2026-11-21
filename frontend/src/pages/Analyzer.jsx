@@ -61,7 +61,9 @@ export default function Analyzer() {
     const a = document.createElement('a');
     a.href = url;
     a.download = `scam-audit-report-${Date.now()}.json`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     URL.revokeObjectURL(url);
   };
 
