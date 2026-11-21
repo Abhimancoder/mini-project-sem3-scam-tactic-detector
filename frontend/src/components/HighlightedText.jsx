@@ -11,7 +11,7 @@ export default function HighlightedText({ text, highlights }) {
           <Eye size={18} color="var(--accent-emerald)" />
           <span>Analyzed Text Stream</span>
         </div>
-        <div style={{ padding: '1rem', background: '#0a0e17', borderRadius: '8px', border: '1px solid var(--border-color)', fontSize: '0.95rem', lineHeight: 1.7, color: '#e2e8f0' }}>
+        <div style={{ padding: '1rem', background: '#0a0e17', borderRadius: '8px', border: '1px solid var(--border-color)', fontSize: '0.95rem', lineHeight: 1.7, color: '#e2e8f0', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
           {text}
         </div>
         <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--accent-emerald)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -99,7 +99,7 @@ export default function HighlightedText({ text, highlights }) {
         </div>
       </div>
 
-      <div style={{ padding: '1.25rem', background: '#0a0e17', borderRadius: '8px', border: '1px solid var(--border-color)', fontSize: '1rem', lineHeight: 1.8, color: '#f1f5f9' }}>
+      <div style={{ padding: '1.25rem', background: '#0a0e17', borderRadius: '8px', border: '1px solid var(--border-color)', fontSize: '1rem', lineHeight: 1.8, color: '#f1f5f9', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
         {renderedElements}
       </div>
     </div>

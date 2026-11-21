@@ -34,6 +34,11 @@ export default function Analyzer() {
       return;
     }
 
+    if (inputText.length > 15000) {
+      setError('Input exceeds maximum allowed length of 15,000 characters. Please shorten your conversation text.');
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -141,8 +146,9 @@ export default function Analyzer() {
 
           {/* Controls Footer */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.75rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-              {inputText.length} characters (Max: 15,000)
+            <span style={{ fontSize: '0.8rem', color: inputText.length > 15000 ? 'var(--accent-red)' : 'var(--text-muted)' }}>
+              {inputText.length.toLocaleString()} / 15,000 characters
+              {inputText.length > 15000 && ' (Exceeds maximum limit!)'}
             </span>
 
             <button
