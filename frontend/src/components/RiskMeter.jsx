@@ -42,7 +42,7 @@ export default function RiskMeter({ riskAssessment }) {
   return (
     <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '2rem 1.5rem' }}>
       <div style={{ position: 'relative', width: '180px', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg width="180" height="180" viewBox="0 0 180 180" style={{ transform: 'rotate(135deg)' }}>
+        <svg width="180" height="180" viewBox="0 0 180 180" style={{ transform: 'rotate(135deg)', transformOrigin: 'center' }}>
           {/* Background Track */}
           <circle
             cx="90"
