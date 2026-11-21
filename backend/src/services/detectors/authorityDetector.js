@@ -11,7 +11,7 @@ const { evaluateContext } = require('../nlp/contextFilter');
  */
 
 const AUTHORITY_ENTITIES = [
-  /\b(?:SEBI|SEC|RBI|FINRA|FCA|CFTC|FDIC|IRS|FBI|Interpol|Federal\s+Reserve|World\s+Bank|IMF)\b/i,
+  /\b(?:SEBI|SEC|RBI|FINRA|FCA|CFTC|FDIC|IRS|FBI|Interpol|Federal\s+Reserve|Central\s+Bank|World\s+Bank|IMF)\b/i,
   /\b(?:Goldman\s+Sachs|JPMorgan|Barclays|Morgan\s+Stanley|Binance(?:\s+Support)?|Coinbase(?:\s+Official)?|BlackRock|Citigroup)\b/i,
   /\b(?:registered\s+(?:broker|advisor|officer|agent|manager)|licensed\s+(?:firm|entity|specialist)|financial\s+regulator)\b/i,
   /\b(?:cyber\s+crime\s+(?:department|cell|unit)|anti-fraud\s+division|compliance\s+(?:officer|department))\b/i
@@ -71,7 +71,7 @@ function detectAuthorityImpersonation(sentences) {
         const phrase = indMatch[0];
         if (!isNegated(text, phrase)) {
           // If entity is present in sentence OR indicator itself references government/regulator, flag it
-          const hasEntity = entityMatch !== undefined || /government|RBI|SEBI|SEC|police|officer|official|Binance|Barclays|FBI/i.test(phrase);
+          const hasEntity = entityMatch !== undefined || /government|RBI|SEBI|SEC|police|officer|official|Binance|Barclays|FBI|central\s+bank/i.test(phrase);
           if (hasEntity) {
             matchedPhrases.add(phrase);
             matches.push({
@@ -82,7 +82,7 @@ function detectAuthorityImpersonation(sentences) {
               sentenceIndex: sObj.index,
               sentenceText: text
             });
-            totalScore += indicator.weight * 40;
+            totalScore += indicator.weight * 45;
             if (!matchedSentences.includes(text)) {
               matchedSentences.push(text);
             }
@@ -116,9 +116,9 @@ function detectAuthorityImpersonation(sentences) {
   const normalizedScore = Math.min(100, Math.round(totalScore));
 
   let confidence = 'LOW';
-  if (normalizedScore >= 70 || matches.length >= 2) {
+  if (normalizedScore >= 40 || matches.length >= 2) {
     confidence = 'HIGH';
-  } else if (normalizedScore >= 35 || matches.length === 1) {
+  } else if (normalizedScore >= 25 || matches.length === 1) {
     confidence = 'MEDIUM';
   }
 
