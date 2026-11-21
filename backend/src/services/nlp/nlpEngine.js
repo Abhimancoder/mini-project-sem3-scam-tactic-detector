@@ -73,6 +73,7 @@ function analyzeConversation(conversationText) {
       totalTacticsEvaluated: tactics.length,
       detectedTacticsCount: detectedTactics.length
     },
+    detectedTacticsCount: detectedTactics.length,
     riskAssessment,
     tactics,
     detectedTactics,

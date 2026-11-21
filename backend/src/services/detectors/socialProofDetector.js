@@ -9,12 +9,12 @@ const { evaluateContext } = require('../nlp/contextFilter');
 
 const SOCIAL_PROOF_PATTERNS = [
   {
-    regex: /\b(?:hundreds|thousands|\d+[kK]?)\s+(?:of\s+)?(?:members?|investors?|people|users?|traders?)\s+(?:already|have)?\s*(?:joined|earning|invested|made\s+money|withdrawn|profited|active)\b/i,
+    regex: /\b(?:over\s+)?(?:hundreds|thousands|[\d,]+[kK]?)\s+(?:of\s+)?(?:members?|investors?|people|users?|traders?)\s+(?:have\s+already|already\s+have|have|already)?\s*(?:joined|earning|invested|made\s+money|withdrawn|profited|active)\b/i,
     weight: 0.90,
     cue: 'Fabricated crowd participation / herd endorsement'
   },
   {
-    regex: /\b(?:see\s+(?:the\s+)?(?:proofs?|screenshots?|receipts?|payout\s+proofs?|withdrawal\s+proofs?)|proof\s+of\s+payment|proofs\s+of\s+payment)\b/i,
+    regex: /\b(?:see\s+(?:the\s+)?(?:proofs?|screenshots?|receipts?|payout\s+proofs?|withdrawal\s+proofs?)|proof\s+of\s+payment|proofs\s+of\s+payment|withdrawal\s+proofs?)\b/i,
     weight: 0.85,
     cue: 'Testimonial / Withdrawal screenshot baiting'
   },
@@ -69,7 +69,7 @@ function detectSocialProof(sentences) {
             sentenceIndex: sObj.index,
             sentenceText: text
           });
-          totalScore += rule.weight * 35;
+          totalScore += rule.weight * 45;
           if (!matchedSentences.includes(text)) {
             matchedSentences.push(text);
           }
@@ -82,7 +82,7 @@ function detectSocialProof(sentences) {
   const normalizedScore = Math.min(100, Math.round(totalScore));
 
   let confidence = 'LOW';
-  if (normalizedScore >= 70 || matches.length >= 2) {
+  if (normalizedScore >= 60 || matches.length >= 2) {
     confidence = 'HIGH';
   } else if (normalizedScore >= 35 || matches.length === 1) {
     confidence = 'MEDIUM';

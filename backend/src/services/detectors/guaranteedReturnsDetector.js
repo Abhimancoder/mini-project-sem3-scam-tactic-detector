@@ -69,7 +69,7 @@ function detectGuaranteedReturns(sentences) {
             sentenceIndex: sObj.index,
             sentenceText: text
           });
-          totalScore += rule.weight * 40;
+          totalScore += rule.weight * 45;
           if (!matchedSentences.includes(text)) {
             matchedSentences.push(text);
           }
@@ -82,7 +82,7 @@ function detectGuaranteedReturns(sentences) {
   const normalizedScore = Math.min(100, Math.round(totalScore));
 
   let confidence = 'LOW';
-  if (normalizedScore >= 70 || matches.length >= 2) {
+  if (normalizedScore >= 60 || matches.length >= 2) {
     confidence = 'HIGH';
   } else if (normalizedScore >= 35 || matches.length === 1) {
     confidence = 'MEDIUM';
