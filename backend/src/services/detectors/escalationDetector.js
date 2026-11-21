@@ -9,7 +9,7 @@ const { evaluateContext } = require('../nlp/contextFilter');
 
 const ESCALATION_PATTERNS = [
   {
-    regex: /\b(?:deposit|transfer|send|add|pay)\s+(?:another|more|additional|extra)\s+[$₹€£]?\d+/i,
+    regex: /\b(?:deposit|transfer|send|add|pay)\s+(?:an?\s+)?(?:another|more|additional|extra)\s+[$₹€£]?\d+/i,
     weight: 0.95,
     cue: 'Subsequent capital injection demand'
   },

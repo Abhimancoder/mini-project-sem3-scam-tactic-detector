@@ -13,6 +13,15 @@ describe('Security & Input Validation Test Suite', () => {
       expect(res.body.error).toContain('Missing required field');
     });
 
+    test('rejects missing or empty request body with 400 Bad Request', async () => {
+      const res = await request(app)
+        .post('/api/analyze')
+        .set('Content-Type', 'application/json');
+
+      expect(res.statusCode).toBe(400);
+      expect(res.body.success).toBe(false);
+    });
+
     test('rejects empty string with 400 Bad Request', async () => {
       const res = await request(app)
         .post('/api/analyze')

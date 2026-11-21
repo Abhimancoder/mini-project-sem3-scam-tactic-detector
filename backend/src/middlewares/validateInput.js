@@ -7,6 +7,13 @@ const config = require('../config/environment');
  */
 
 function validateConversationInput(req, res, next) {
+  if (!req.body || typeof req.body !== 'object') {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing request body. Request must be a valid JSON object containing "conversation".'
+    });
+  }
+
   const { conversation } = req.body;
 
   if (conversation === undefined || conversation === null) {

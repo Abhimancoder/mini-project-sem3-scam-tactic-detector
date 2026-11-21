@@ -1,6 +1,6 @@
 # Scam Tactic Detector
 
-[![Build & Test Status](https://img.shields.io/badge/tests-41%20passed-brightgreen.svg)](docs/TESTING_REPORT.md)
+[![Build & Test Status](https://img.shields.io/badge/tests-42%20passed-brightgreen.svg)](docs/TESTING_REPORT.md)
 [![Dataset Benchmark](https://img.shields.io/badge/accuracy-100%25-blue.svg)](docs/DATASET_DOCUMENTATION.md)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-green.svg)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
