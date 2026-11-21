@@ -23,7 +23,7 @@ const GUARANTEED_PATTERNS = [
     cue: 'Unsustainable periodic return promise'
   },
   {
-    regex: /\b(?:never\s+lose|cannot\s+lose|can'?t\s+lose|impossible\s+to\s+lose|loss[- ]proof)\s*(?:money|funds|capital)?\b/i,
+    regex: /\b(?:never\s+loses?|cannot\s+lose|can'?t\s+lose|impossible\s+to\s+lose|loss[- ]proof)\s*(?:money|funds|capital)?\b/i,
     weight: 0.90,
     cue: 'Impossible loss-immunity claim'
   },
@@ -33,9 +33,14 @@ const GUARANTEED_PATTERNS = [
     cue: 'Fixed profit assurance'
   },
   {
-    regex: /\b(?:turn\s+[$₹€£]?\d+\s+into\s+[$₹€£]?\d+\s+(?:in\s+\d+|overnight|today|instantly))\b/i,
+    regex: /\b(?:turn\s+[$₹€£]?\d+\s+into\s+[$₹€£]?\d+\s+(?:in\s+\d+|overnight|today|instantly|in\s+24\s*hours))\b/i,
     weight: 0.90,
     cue: 'Instant wealth multiplication scheme'
+  },
+  {
+    regex: /\b(?:guaranteed\s+profit\s+of\s+\d+%\s+(?:daily|weekly|monthly))\b/i,
+    weight: 0.95,
+    cue: 'Guaranteed high periodic yield'
   }
 ];
 
@@ -47,8 +52,8 @@ function detectGuaranteedReturns(sentences) {
 
   for (const sObj of sentences) {
     const text = sObj.text;
-    const { isLegitimateDisclaimer } = evaluateContext(text);
-    if (isLegitimateDisclaimer) continue;
+    const { isLegitimateDisclaimer, isEducational } = evaluateContext(text);
+    if (isLegitimateDisclaimer || isEducational) continue;
 
     for (const rule of GUARANTEED_PATTERNS) {
       const match = text.match(rule.regex);
@@ -79,7 +84,7 @@ function detectGuaranteedReturns(sentences) {
   let confidence = 'LOW';
   if (normalizedScore >= 70 || matches.length >= 2) {
     confidence = 'HIGH';
-  } else if (normalizedScore >= 40 || matches.length === 1) {
+  } else if (normalizedScore >= 35 || matches.length === 1) {
     confidence = 'MEDIUM';
   }
 

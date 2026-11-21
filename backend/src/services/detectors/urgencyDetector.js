@@ -13,6 +13,11 @@ const URGENCY_PATTERNS = [
     cue: 'Immediate action demand'
   },
   {
+    regex: /\b(?:immediately|right\s+now|asap|at\s+once)\b/i,
+    weight: 0.75,
+    cue: 'Instantaneous execution pressure'
+  },
+  {
     regex: /\b(?:limited\s+(?:time(?:\s+only)?|slots?|seats?|spots?|availability|offer|window))\b/i,
     weight: 0.80,
     cue: 'Artificial scarcity / Limited availability'
@@ -20,10 +25,15 @@ const URGENCY_PATTERNS = [
   {
     regex: /\b(?:only\s+\d+\s+(?:hours?|minutes?|days?|spots?|slots?)\s+(?:left|remaining))\b/i,
     weight: 0.90,
-    cue: 'Countdown countdown pressure'
+    cue: 'Countdown pressure'
   },
   {
-    regex: /\b(?:expires?\s+(?:in\s+\d+|today|tonight|within|soon|at midnight))\b/i,
+    regex: /\b(?:within\s+\d+\s+(?:hours?|minutes?|days?))\b/i,
+    weight: 0.85,
+    cue: 'Arbitrary short-fuse deadline'
+  },
+  {
+    regex: /\b(?:expires?\s+(?:in\s+\d+|today|tonight|within|soon|at\s+midnight))\b/i,
     weight: 0.85,
     cue: 'Expiring opportunity pretext'
   },
@@ -33,7 +43,7 @@ const URGENCY_PATTERNS = [
     cue: 'Fear of missing out (FOMO) inducement'
   },
   {
-    regex: /\b(?:send\s+(?:money|funds|crypto|bitcoin|usdt)\s+(?:now|asap|within\s+\d+\s+(?:minutes?|hours?)))\b/i,
+    regex: /\b(?:send|deposit|transfer|pay)\s+(?:money|funds|crypto|bitcoin|usdt|fees?)\s+(?:now|asap|today|immediately)\b/i,
     weight: 0.95,
     cue: 'Immediate capital transfer solicitation'
   },
@@ -52,8 +62,8 @@ function detectUrgency(sentences) {
 
   for (const sObj of sentences) {
     const text = sObj.text;
-    const { isLegitimateDisclaimer } = evaluateContext(text);
-    if (isLegitimateDisclaimer) continue;
+    const { isLegitimateDisclaimer, isEducational } = evaluateContext(text);
+    if (isLegitimateDisclaimer || isEducational) continue;
 
     for (const rule of URGENCY_PATTERNS) {
       const match = text.match(rule.regex);
@@ -86,7 +96,7 @@ function detectUrgency(sentences) {
   let confidence = 'LOW';
   if (normalizedScore >= 70 || matches.length >= 2) {
     confidence = 'HIGH';
-  } else if (normalizedScore >= 40 || matches.length === 1) {
+  } else if (normalizedScore >= 35 || matches.length === 1) {
     confidence = 'MEDIUM';
   }
 

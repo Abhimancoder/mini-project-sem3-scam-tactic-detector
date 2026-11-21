@@ -9,12 +9,12 @@ const { evaluateContext } = require('../nlp/contextFilter');
 
 const SOCIAL_PROOF_PATTERNS = [
   {
-    regex: /\b(?:hundreds|thousands|\d+[kK]?)\s+(?:of\s+)?(?:members?|investors?|people|users?)\s+(?:already|have)?\s*(?:joined|earning|invested|made\s+money|withdrawn|profited)\b/i,
+    regex: /\b(?:hundreds|thousands|\d+[kK]?)\s+(?:of\s+)?(?:members?|investors?|people|users?|traders?)\s+(?:already|have)?\s*(?:joined|earning|invested|made\s+money|withdrawn|profited|active)\b/i,
     weight: 0.90,
     cue: 'Fabricated crowd participation / herd endorsement'
   },
   {
-    regex: /\b(?:see\s+(?:the\s+)?(?:proofs?|screenshots?|receipts?|payout\s+proofs?|withdrawal\s+proofs?)|proof\s+of\s+payment)\b/i,
+    regex: /\b(?:see\s+(?:the\s+)?(?:proofs?|screenshots?|receipts?|payout\s+proofs?|withdrawal\s+proofs?)|proof\s+of\s+payment|proofs\s+of\s+payment)\b/i,
     weight: 0.85,
     cue: 'Testimonial / Withdrawal screenshot baiting'
   },
@@ -24,7 +24,7 @@ const SOCIAL_PROOF_PATTERNS = [
     cue: 'Private community peer pressure'
   },
   {
-    regex: /\b(?:everyone\s+(?:is\s+(?:investing|joining|making\s+money|doing\s+it)|in\s+my\s+group)|all\s+smart\s+investors\s+are)\b/i,
+    regex: /\b(?:everyone\s+(?:is\s+(?:investing|joining|making\s+money|doing\s+it)|in\s+(?:our|my|the)\s+group)|all\s+smart\s+investors\s+are)\b/i,
     weight: 0.80,
     cue: 'Consensus manufacturing'
   },
@@ -37,6 +37,11 @@ const SOCIAL_PROOF_PATTERNS = [
     regex: /\b(?:even\s+(?:housewives|students|beginners)\s+are\s+making\s+[$₹€£]?\d+)\b/i,
     weight: 0.85,
     cue: 'Relatable demographic targeting'
+  },
+  {
+    regex: /\b(?:getting\s+rich|becoming\s+millionaires?\s+with\s+us)\b/i,
+    weight: 0.80,
+    cue: 'Peer wealth mimicry'
   }
 ];
 
@@ -48,8 +53,8 @@ function detectSocialProof(sentences) {
 
   for (const sObj of sentences) {
     const text = sObj.text;
-    const { isLegitimateDisclaimer } = evaluateContext(text);
-    if (isLegitimateDisclaimer) continue;
+    const { isLegitimateDisclaimer, isEducational } = evaluateContext(text);
+    if (isLegitimateDisclaimer || isEducational) continue;
 
     for (const rule of SOCIAL_PROOF_PATTERNS) {
       const match = text.match(rule.regex);
@@ -79,7 +84,7 @@ function detectSocialProof(sentences) {
   let confidence = 'LOW';
   if (normalizedScore >= 70 || matches.length >= 2) {
     confidence = 'HIGH';
-  } else if (normalizedScore >= 40 || matches.length === 1) {
+  } else if (normalizedScore >= 35 || matches.length === 1) {
     confidence = 'MEDIUM';
   }
 
