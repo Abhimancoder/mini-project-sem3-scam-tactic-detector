@@ -1,0 +1,202 @@
+[
+  {
+    "id": "SYNTH-001",
+    "conversation": "Our private crypto pool guarantees 20% daily return on any deposit. You will double your money in 48 hours without risk.",
+    "expected_labels": ["guaranteed_returns"],
+    "evidence_phrase": "guarantees 20% daily return, double your money in 48 hours without risk",
+    "explanation": "Promises guaranteed daily returns and impossible doubling timelines with claimed zero risk.",
+    "expected_risk_category": "HIGH_RISK"
+  },
+  {
+    "id": "SYNTH-002",
+    "conversation": "This pre-sale window closes at midnight! Act fast, only 3 slots left before price doubles tomorrow morning.",
+    "expected_labels": ["urgency"],
+    "evidence_phrase": "Act fast, only 3 slots left, closes at midnight",
+    "explanation": "Creates severe artificial time pressure and artificial slot scarcity to bypass critical thinking.",
+    "expected_risk_category": "MODERATE_RISK"
+  },
+  {
+    "id": "SYNTH-003",
+    "conversation": "I am a registered agent from SEBI compliance department. We detected unauthorized funds in your portfolio. Send clearance fee to this official wallet immediately.",
+    "expected_labels": ["authority", "urgency"],
+    "evidence_phrase": "registered agent from SEBI, Send clearance fee, immediately",
+    "explanation": "Impersonates regulatory compliance authorities and manufactures urgent legal compliance pressure.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-004",
+    "conversation": "Our VIP telegram group has over 15,000 members earning every day! See the payout screenshots and withdrawal proofs from our happy investors.",
+    "expected_labels": ["social_proof"],
+    "evidence_phrase": "15,000 members earning, See the payout screenshots, withdrawal proofs",
+    "explanation": "Uses fabricated community metrics and unverified withdrawal screenshots to manufacture false consensus.",
+    "expected_risk_category": "MODERATE_RISK"
+  },
+  {
+    "id": "SYNTH-005",
+    "conversation": "Your trading account profits have reached $12,000. However, to withdraw your funds, you must deposit another $1,500 to unlock your balance.",
+    "expected_labels": ["escalation"],
+    "evidence_phrase": "deposit another $1,500 to unlock your balance",
+    "explanation": "Classic advance-fee extortion requiring additional capital to release accumulated profits.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-006",
+    "conversation": "Act now! We promise 100% guaranteed profit of 30% weekly. Over 8,000 investors have joined our channel. Only 5 slots remaining today!",
+    "expected_labels": ["urgency", "guaranteed_returns", "social_proof"],
+    "evidence_phrase": "Act now, 100% guaranteed profit, 8,000 investors, Only 5 slots remaining",
+    "explanation": "Tri-tactic high-pressure manipulation combining time scarcity, assured profit, and herd momentum.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-007",
+    "conversation": "Speaking as a senior analyst from Goldman Sachs official private wealth unit, our AI algorithm never loses money. Send funds now to secure your allocation.",
+    "expected_labels": ["authority", "guaranteed_returns", "urgency"],
+    "evidence_phrase": "senior analyst from Goldman Sachs, never loses money, Send funds now",
+    "explanation": "Combines institutional impersonation, loss-immunity guarantee, and immediate fund transfer demand.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-008",
+    "conversation": "To complete your withdrawal, platform policy dictates you pay a 10% tax clearance fee first. Deposit another $800 within 2 hours or your funds will be forfeited.",
+    "expected_labels": ["escalation", "urgency"],
+    "evidence_phrase": "deposit another $800, tax clearance fee first, within 2 hours",
+    "explanation": "Conditional advance-fee withdrawal trap amplified by immediate forfeiture threat.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-009",
+    "conversation": "Mutual funds are subject to market risks, read all scheme related documents carefully before investing. Consult a certified financial advisor.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Standard statutory regulatory disclaimer and legitimate investor guidance.",
+    "expected_risk_category": "SAFE"
+  },
+  {
+    "id": "SYNTH-010",
+    "conversation": "I recommend building a diversified core portfolio with index ETFs. Take your time to review the expense ratios and asset allocation.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Standard, sound fiduciary investment planning without psychological coercion.",
+    "expected_risk_category": "SAFE"
+  },
+  {
+    "id": "SYNTH-011",
+    "conversation": "Please note that high yields always accompany high risks. No stock return is guaranteed, and capital can decrease in value.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Educational risk-return awareness discussion with appropriate negation.",
+    "expected_risk_category": "SAFE"
+  },
+  {
+    "id": "SYNTH-012",
+    "conversation": "Our bank fraud team reminds you: never share your OTP, password, or PIN with anyone. We will never ask you to transfer funds to release your account.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Official institutional security educational bulletin advising against scam vectors.",
+    "expected_risk_category": "SAFE"
+  },
+  {
+    "id": "SYNTH-013",
+    "conversation": "Hurry up! Don't miss out on this once in a lifetime opportunity. Limited slots remaining for today's investment round.",
+    "expected_labels": ["urgency"],
+    "evidence_phrase": "Hurry up, Don't miss out, Limited slots remaining",
+    "explanation": "FOMO-inducing time pressure and artificial slot limitation.",
+    "expected_risk_category": "MODERATE_RISK"
+  },
+  {
+    "id": "SYNTH-014",
+    "conversation": "Our automated trading bot guarantees risk-free profit with zero risk. You will turn $100 into $1,000 in 24 hours.",
+    "expected_labels": ["guaranteed_returns"],
+    "evidence_phrase": "guarantees risk-free profit, zero risk, turn $100 into $1,000 in 24 hours",
+    "explanation": "Unrealistic multiplication promises and impossible claims of zero risk.",
+    "expected_risk_category": "HIGH_RISK"
+  },
+  {
+    "id": "SYNTH-015",
+    "conversation": "I work for the FBI cyber crime unit. Your bank account is frozen by court order unless you deposit clearance fees to our official agent account right now.",
+    "expected_labels": ["authority", "urgency"],
+    "evidence_phrase": "work for the FBI cyber crime unit, account is frozen, deposit clearance fees, right now",
+    "explanation": "Law enforcement coercion, fictitious legal freeze, and urgent payment extortion.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-016",
+    "conversation": "Check what our clients are saying! Thousands of users have profited this month. Even beginners are making $500 daily.",
+    "expected_labels": ["social_proof"],
+    "evidence_phrase": "Thousands of users have profited, Even beginners are making $500 daily",
+    "explanation": "Fabricated testimonials, exaggerated member success, and appeal to beginners.",
+    "expected_risk_category": "MODERATE_RISK"
+  },
+  {
+    "id": "SYNTH-017",
+    "conversation": "Upgrade to VIP Diamond tier to withdraw your profits. You must transfer an additional $2,000 to verify your wallet address.",
+    "expected_labels": ["escalation"],
+    "evidence_phrase": "Upgrade to VIP Diamond tier to withdraw, transfer an additional $2,000",
+    "explanation": "Tier-based escalation demanding additional capital to release money.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-018",
+    "conversation": "Government bonds offer fixed coupon rates, but inflation risk must still be considered. Do your own research before committing funds.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Balanced financial commentary discussing fixed income risks and independent research.",
+    "expected_risk_category": "SAFE"
+  },
+  {
+    "id": "SYNTH-019",
+    "conversation": "Immediate action required! Send funds now as this special allocation expires in 30 minutes. 100% guaranteed returns backed by Barclays.",
+    "expected_labels": ["urgency", "guaranteed_returns", "authority"],
+    "evidence_phrase": "Immediate action required, Send funds now, expires in 30 minutes, 100% guaranteed returns, backed by Barclays",
+    "explanation": "Aggressive combination of artificial deadlines, assured profits, and unauthorized bank name dropping.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-020",
+    "conversation": "Our Telegram community is booming with 25,000 active traders! See proofs of payment in the pinned message. Everyone is joining our VIP desk.",
+    "expected_labels": ["social_proof"],
+    "evidence_phrase": "25,000 active traders, See proofs of payment, Everyone is joining",
+    "explanation": "Social proof through claimed community scale, screenshots, and bandwagon statements.",
+    "expected_risk_category": "MODERATE_RISK"
+  },
+  {
+    "id": "SYNTH-021",
+    "conversation": "To unfreeze your balance, you must pay the liquidity gas fee. Deposit another $450 immediately before your account is closed.",
+    "expected_labels": ["escalation", "urgency"],
+    "evidence_phrase": "To unfreeze your balance, Deposit another $450 immediately",
+    "explanation": "Hostage balance trap combining advance fee escalation with urgent account termination threat.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-022",
+    "conversation": "This stock has shown good fundamentals over the last three quarters, but market volatility remains high. Always set stop-loss orders.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Prudent fundamental equity commentary emphasizing risk controls.",
+    "expected_risk_category": "SAFE"
+  },
+  {
+    "id": "SYNTH-023",
+    "conversation": "Act now! Guaranteed profit of 15% daily. Check out what our members are saying, everyone in our group is getting rich!",
+    "expected_labels": ["urgency", "guaranteed_returns", "social_proof"],
+    "evidence_phrase": "Act now, Guaranteed profit of 15% daily, everyone in our group is getting rich",
+    "explanation": "Multi-vector scam using time urgency, impossible yield guarantees, and manufactured consensus.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-024",
+    "conversation": "I am an official representative from Binance Support. Transfer your crypto to our secure validation vault right now to avoid asset liquidation.",
+    "expected_labels": ["authority", "urgency"],
+    "evidence_phrase": "official representative from Binance Support, Transfer your crypto, right now",
+    "explanation": "Brand impersonation paired with urgency and coercive asset confiscation threats.",
+    "expected_risk_category": "CRITICAL_RISK"
+  },
+  {
+    "id": "SYNTH-025",
+    "conversation": "Dollar cost averaging into diversified index funds is historically effective for wealth building. There is no rush to buy on any specific day.",
+    "expected_labels": [],
+    "evidence_phrase": "None",
+    "explanation": "Prudent long-term investment philosophy explicitly discouraging hasty decisions.",
+    "expected_risk_category": "SAFE"
+  }
+]

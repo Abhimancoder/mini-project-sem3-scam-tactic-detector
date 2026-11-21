@@ -12,34 +12,34 @@ const { evaluateContext } = require('../nlp/contextFilter');
 
 const AUTHORITY_ENTITIES = [
   /\b(?:SEBI|SEC|RBI|FINRA|FCA|CFTC|FDIC|IRS|FBI|Interpol|Federal\s+Reserve|World\s+Bank|IMF)\b/i,
-  /\b(?:Goldman\s+Sachs|JPMorgan|Barclays|Morgan\s+Stanley|Binance\s+Support|Coinbase\s+Official|BlackRock|Citigroup)\b/i,
+  /\b(?:Goldman\s+Sachs|JPMorgan|Barclays|Morgan\s+Stanley|Binance(?:\s+Support)?|Coinbase(?:\s+Official)?|BlackRock|Citigroup)\b/i,
   /\b(?:registered\s+(?:broker|advisor|officer|agent|manager)|licensed\s+(?:firm|entity|specialist)|financial\s+regulator)\b/i,
-  /\b(?:cyber\s+crime\s+(?:department|cell|unit)|anti-fraud\s+division|compliance\s+officer)\b/i
+  /\b(?:cyber\s+crime\s+(?:department|cell|unit)|anti-fraud\s+division|compliance\s+(?:officer|department))\b/i
 ];
 
 const IMPERSONATION_INDICATORS = [
   {
-    regex: /\b(?:I\s+am\s+(?:a|an|the)|speaking\s+as\s+(?:a|the)|my\s+name\s+is\s+.+and\s+I\s+work\s+(?:at|for|with))\s+(?:official|certified|senior|verified|authorized)?\b/i,
+    regex: /\b(?:I\s+am\s+(?:a|an|the)|speaking\s+as\s+(?:a|the)|my\s+name\s+is\s+.+and\s+I\s+work\s+(?:at|for|with)|I\s+work\s+(?:for|at|with)|agent\s+from|officer\s+from|analyst\s+from)\b/i,
     weight: 0.85,
     cue: 'Personal authority persona claim'
   },
   {
-    regex: /\b(?:direct(?:ly)?\s+(?:approved|endorsed|backed|guaranteed|licensed|certified)\s+by\s+(?:the\s+)?(?:government|RBI|SEBI|SEC|central\s+bank|federal\s+reserve))\b/i,
+    regex: /\b(?:direct(?:ly)?\s+)?(?:approved|endorsed|backed|guaranteed|licensed|certified)\s+by\s+(?:the\s+)?(?:government|RBI|SEBI|SEC|central\s+bank|federal\s+reserve|Barclays|Goldman|JPMorgan|Binance)\b/i,
     weight: 0.90,
-    cue: 'Fictitious regulatory endorsement'
+    cue: 'Fictitious regulatory or institutional endorsement'
   },
   {
-    regex: /\b(?:official\s+(?:compliance|clearance|security|clearance\s+letter|stamp|certificate\s+of\s+deposit))\b/i,
+    regex: /\b(?:official\s+(?:compliance|clearance|security|clearance\s+letter|stamp|certificate\s+of\s+deposit|representative|agent))\b/i,
     weight: 0.75,
-    cue: 'Fabricated official certification'
+    cue: 'Fabricated official certification / title'
   },
   {
-    regex: /\b(?:under\s+orders?\s+from|by\s+mandate\s+of|fines?\s+or\s+arrest|police\s+case|account\s+frozen\s+by\s+(?:court|rbi|sec))\b/i,
+    regex: /\b(?:under\s+orders?\s+from|by\s+mandate\s+of|fines?\s+or\s+arrest|police\s+case|account\s+(?:is\s+)?frozen\s+(?:by|under|by\s+court|by\s+rbi|by\s+sec)?)\b/i,
     weight: 0.90,
     cue: 'Coercive institutional intimidation'
   },
   {
-    regex: /\b(?:send\s+(?:fee|tax|clearance|deposit)\s+to\s+(?:my|our|this)\s+(?:official\s+)?(?:account|wallet|upi))\b/i,
+    regex: /\b(?:send|deposit|transfer)\s+(?:fee|tax|clearance|deposit|crypto)\s+to\s+(?:my|our|this)\s+(?:official\s+)?(?:account|wallet|upi|agent)\b/i,
     weight: 0.95,
     cue: 'Authority-driven fund extraction'
   },
@@ -71,7 +71,7 @@ function detectAuthorityImpersonation(sentences) {
         const phrase = indMatch[0];
         if (!isNegated(text, phrase)) {
           // If entity is present in sentence OR indicator itself references government/regulator, flag it
-          const hasEntity = entityMatch !== undefined || /government|RBI|SEBI|SEC|police|officer|official/i.test(phrase);
+          const hasEntity = entityMatch !== undefined || /government|RBI|SEBI|SEC|police|officer|official|Binance|Barclays|FBI/i.test(phrase);
           if (hasEntity) {
             matchedPhrases.add(phrase);
             matches.push({
@@ -118,7 +118,7 @@ function detectAuthorityImpersonation(sentences) {
   let confidence = 'LOW';
   if (normalizedScore >= 70 || matches.length >= 2) {
     confidence = 'HIGH';
-  } else if (normalizedScore >= 40 || matches.length === 1) {
+  } else if (normalizedScore >= 35 || matches.length === 1) {
     confidence = 'MEDIUM';
   }
 
