@@ -5,6 +5,7 @@ export default function About() {
   const team = [
     {
       name: 'Abhiman',
+      rollNo: '202510101150119',
       username: 'Abhimancoder',
       role: 'Project Lead, AI/ML, Backend & Architecture',
       branch: 'feature/abhiman-core-ai-backend',
@@ -12,6 +13,7 @@ export default function About() {
     },
     {
       name: 'Aryan',
+      rollNo: '202510101150118',
       username: 'aryan48425srmu-arch',
       role: 'Frontend Development & UI/UX Design',
       branch: 'feature/aryan-frontend',
@@ -19,6 +21,7 @@ export default function About() {
     },
     {
       name: 'Rohit',
+      rollNo: '202510101150195',
       username: 'futilit',
       role: 'Dataset & Empirical Research',
       branch: 'feature/rohit-dataset-research',
@@ -26,10 +29,11 @@ export default function About() {
     },
     {
       name: 'Abhishek',
+      rollNo: '202510101150192',
       username: 'abhisheksinghshishodiya-glitch',
       role: 'Quality Assurance, Testing & Documentation',
       branch: 'feature/abhishek-testing-documentation',
-      contributions: 'Constructed 9 automated Jest/Supertest test suites (41 tests, 100% passing), security audit report, API specs, and hackathon presentation pitch.'
+      contributions: 'Constructed 9 automated Jest/Supertest test suites (42 tests, 100% passing), security audit report, API specs, and hackathon presentation pitch.'
     }
   ];
 
@@ -67,7 +71,7 @@ export default function About() {
                         {member.name}
                       </h3>
                       <div style={{ fontSize: '0.8rem', color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)' }}>
-                        @{member.username}
+                        @{member.username} • Roll: {member.rollNo}
                       </div>
                     </div>
                     <span className="badge badge-low" style={{ fontSize: '0.7rem' }}>

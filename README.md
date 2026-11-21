@@ -190,10 +190,10 @@ Comprehensive technical specifications are available in the [`docs/`](docs/) dir
 
 ## 10. Team & Contribution Governance
 
-- **Abhiman** (`Abhimancoder`) - **Project Lead**, AI/ML, Backend, Architecture and Integration.
-- **Aryan** (`aryan48425srmu-arch`) - Frontend Development & UI/UX.
-- **Rohit** (`futilit`) - Dataset & Empirical Research.
-- **Abhishek** (`abhisheksinghshishodiya-glitch`) - Quality Assurance, Automated Testing & Documentation.
+- **Abhiman** (Roll No: `202510101150119`, `@Abhimancoder`) - **Project Lead**, AI/ML, Backend, Architecture and Integration.
+- **Aryan** (Roll No: `202510101150118`, `@aryan48425srmu-arch`) - Frontend Development & UI/UX.
+- **Rohit** (Roll No: `202510101150195`, `@futilit`) - Dataset & Empirical Research.
+- **Abhishek** (Roll No: `202510101150192`, `@abhisheksinghshishodiya-glitch`) - Quality Assurance, Automated Testing & Documentation.
 
 *Note: All development, testing, and integration was executed by Antigravity from Abhiman's authenticated workspace, committed under Abhiman's verified GitHub identity.*
 

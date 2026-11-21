@@ -9,12 +9,12 @@
 
 ## 1. Team Role Allocation
 
-| Member Name | GitHub Username | Core Responsibilities | Designated Feature Branch |
-| :--- | :--- | :--- | :--- |
-| **Abhiman** | `Abhimancoder` | **Project Lead**, Backend Architecture, AI/ML Detection Engine, System Integration, Security Hardening | `feature/abhiman-core-ai-backend` |
-| **Aryan** | `aryan48425srmu-arch` | **Frontend Development**, UI/UX Design, Security Dashboard, Interactive Highlighting, Responsive Design | `feature/aryan-frontend` |
-| **Rohit** | `futilit` | **Dataset & Research**, Synthetic Data Generation, Annotation, Benchmarking & Evaluation Framework | `feature/rohit-dataset-research` |
-| **Abhishek** | `abhisheksinghshishodiya-glitch` | **Testing & Documentation**, Automated QA Suites, Technical Reports, Hackathon Pitch Material | `feature/abhishek-testing-documentation` |
+| Member Name | University Roll No | GitHub Username | Core Responsibilities | Designated Feature Branch |
+| :--- | :--- | :--- | :--- | :--- |
+| **Abhiman** | `202510101150119` | `Abhimancoder` | **Project Lead**, Backend Architecture, AI/ML Detection Engine, System Integration, Security Hardening | `feature/abhiman-core-ai-backend` |
+| **Aryan** | `202510101150118` | `aryan48425srmu-arch` | **Frontend Development**, UI/UX Design, Security Dashboard, Interactive Highlighting, Responsive Design | `feature/aryan-frontend` |
+| **Rohit** | `202510101150195` | `futilit` | **Dataset & Research**, Synthetic Data Generation, Annotation, Benchmarking & Evaluation Framework | `feature/rohit-dataset-research` |
+| **Abhishek** | `202510101150192` | `abhisheksinghshishodiya-glitch` | **Testing & Documentation**, Automated QA Suites, Technical Reports, Hackathon Pitch Material | `feature/abhishek-testing-documentation` |
 
 ---
 
