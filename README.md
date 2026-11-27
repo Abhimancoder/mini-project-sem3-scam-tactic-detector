@@ -124,9 +124,28 @@ npm run client
 
 Open your browser at `http://localhost:5173`.
 
+### Unified Production Server (Single Port)
+To build and run the entire application on a single port (`PORT`, default `5000`):
+```bash
+npm run build
+npm start
+```
+Open `http://localhost:5000` (serves both React UI and `/api/*` routes).
+
 ---
 
-## 6. Dataset & Empirical Benchmarks
+## 6. Cloud Deployment Guide
+
+The application is pre-configured for instant zero-cost cloud deployment:
+
+- **Render:** Deploy directly with the included [`render.yaml`](render.yaml) blueprint. Build: `npm install && npm run build`, Start: `npm start`.
+- **Vercel:** Ready with [`vercel.json`](vercel.json) and [`api/index.js`](api/index.js) serverless adapter.
+- **Docker:** Production containerization ready with [`Dockerfile`](Dockerfile).
+- For complete instructions, see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
+---
+
+## 7. Dataset & Empirical Benchmarks
 
 The project includes a synthetic evaluation dataset of 25 labelled records (`dataset/scam_tactics_dataset.json` and `.csv`). To execute the automated benchmark:
 
@@ -143,7 +162,7 @@ npm run test:dataset
 
 ---
 
-## 7. Automated Testing Suite
+## 8. Automated Testing Suite
 
 The application includes 9 automated test suites covering unit logic, integration endpoints, security controls, and edge cases:
 
@@ -153,14 +172,13 @@ npm test
 
 ```
 Test Suites: 9 passed, 9 total
-Tests:       41 passed, 41 total
+Tests:       42 passed, 42 total
 Snapshots:   0 total
-Time:        3.506 s
 ```
 
 ---
 
-## 8. Security & Privacy Standards
+## 9. Security & Privacy Standards
 
 - **Zero Cloud API Exposure:** All NLP processing runs in memory on your host machine. Sensitive private conversations are never transmitted to third parties.
 - **Request Size Boundaries:** Enforces strict 15,000 character maximums (HTTP 413) to prevent memory exhaustion.
@@ -170,10 +188,11 @@ Time:        3.506 s
 
 ---
 
-## 9. Project Documentation
+## 10. Project Documentation
 
 Comprehensive technical specifications are available in the [`docs/`](docs/) directory:
 
+- [Deployment Guide](docs/DEPLOYMENT.md)
 - [Project Overview](docs/PROJECT_OVERVIEW.md)
 - [System Architecture](docs/SYSTEM_ARCHITECTURE.md)
 - [Implementation Report](docs/IMPLEMENTATION_REPORT.md)
