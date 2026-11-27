@@ -1,3 +1,5 @@
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -13,7 +15,9 @@ const { errorHandler, notFoundHandler } = require('./middlewares/errorHandler');
 const app = express();
 
 // Security HTTP headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false // Allow inline styles/scripts used by Vite React bundle
+}));
 
 // Cross-Origin Resource Sharing
 app.use(cors({
@@ -47,18 +51,34 @@ app.use('/api/analyze', analyzeRoutes);
 app.use('/api/samples', samplesRoutes);
 app.use('/api/tactics', tacticsRoutes);
 
-// Root route friendly status
-app.get('/', (req, res) => {
-  res.status(200).json({
-    service: 'Scam Tactic Detector API',
-    description: 'Explainable NLP Detection Engine for Investment Scam Tactics',
-    version: config.version,
-    documentation: '/api/tactics',
-    health: '/api/health'
-  });
-});
+// Static client build serving for production deployment
+const clientDistPath = path.resolve(__dirname, '../../frontend/dist');
+const hasClientBuild = fs.existsSync(clientDistPath);
 
-// 404 handler
+if (hasClientBuild) {
+  app.use(express.static(clientDistPath));
+
+  // SPA fallback for all non-API GET requests
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api/')) {
+      return next();
+    }
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+} else {
+  // Root route friendly status when running in pure API mode
+  app.get('/', (req, res) => {
+    res.status(200).json({
+      service: 'Scam Tactic Detector API',
+      description: 'Explainable NLP Detection Engine for Investment Scam Tactics',
+      version: config.version,
+      documentation: '/api/tactics',
+      health: '/api/health'
+    });
+  });
+}
+
+// 404 handler for unmatched API routes
 app.use(notFoundHandler);
 
 // Central error handler
